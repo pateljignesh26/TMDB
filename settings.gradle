@@ -1,0 +1,3 @@
+rootProject.name = "TMDB-The Movies DataBase"
+include ':app'
+include ':api'
