@@ -24,7 +24,7 @@ interface MoviesApi {
     ): Response<MovieResponse>
 
  @GET("now_playing")
-    suspend fun `now playing`(
+    suspend fun nowPlaying(
         @Query("api_key") api: String
     ): Response<MovieResponse>
 

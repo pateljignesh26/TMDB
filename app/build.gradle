@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -39,10 +42,40 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //test
 
+    //api
     implementation project(":api")
+    //api
+
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    //navigation
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    //hilt
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_virsion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_virsion"
+    //retrofit
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glide_virsion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_virsion"
+    //glide
+
+    //size
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    //size
 
 }

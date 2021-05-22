@@ -13,4 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/active_tab_color</item>
+        <item name="android:textSize">10sp</item>
+        <item name="rippleColor">@color/gray</item>
+        <item name="android:textColorSecondary">@color/inactive_tab_color</item>
+    </style>
+
 </resources>

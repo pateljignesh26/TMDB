@@ -44,7 +44,7 @@ class MovieTest {
     @Test
     fun `test now playing`() {
         runBlocking {
-            val response = movieClient.moviesApi.`now playing`(
+            val response = movieClient.moviesApi.nowPlaying(
                 "384378d344ee92994e7c7a5a6d52666d"
             ).body()?.results
 
