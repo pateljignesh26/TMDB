@@ -12,7 +12,7 @@ class MoviesRepo @Inject constructor(
     lateinit var client: MoviesClient
 
     @Inject
-    lateinit var api : MoviesApi
+    lateinit var api: MoviesApi
 
     suspend fun getTopRatedMovies(api_key: String) =
         api.getTopRatedMovies(api_key)
@@ -22,4 +22,10 @@ class MoviesRepo @Inject constructor(
 
     suspend fun getUpcoming(api_key: String) =
         api.getUpcoming(api_key)
+
+    suspend fun getNowPlaying(api_key: String) =
+        api.nowPlaying(api_key)
+
+    suspend fun getNowPlayingVideos(movieId: Int, api_key: String) =
+        api.nowPlayingVideos(movieId, api_key)
 }

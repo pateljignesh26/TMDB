@@ -51,4 +51,16 @@ class MovieTest {
             assertNotNull(response)
         }
     }
+
+    @Test
+    fun testSimilar() {
+        runBlocking {
+            val response = movieClient.moviesApi.nowPlayingVideos(
+                60735,
+                "384378d344ee92994e7c7a5a6d52666d"
+            )
+            assertNotNull(response)
+        }
+    }
+
 }

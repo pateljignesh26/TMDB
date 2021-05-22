@@ -12,6 +12,7 @@ import com.vine.tmdb.R
 import com.vine.tmdb.data.hide
 import com.vine.tmdb.data.show
 import com.vine.tmdb.view.adapters.HomeMoviesAdapter
+import com.vine.tmdb.view.adapters.NowPlayingSliderAdapter
 import com.vine.tmdb.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -29,6 +30,9 @@ class HomeFrag : Fragment() {
     @Inject
     lateinit var upcomingAdapter: HomeMoviesAdapter
 
+    @Inject
+    lateinit var nowPlaying: NowPlayingSliderAdapter
+
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -43,6 +47,7 @@ class HomeFrag : Fragment() {
         updateTopRatedRcv()
         updatePopularRcv()
         updateUpcomingRcv()
+        updateNowPlayingSlider()
     }
 
     private fun updateTopRatedRcv() {
@@ -104,6 +109,18 @@ class HomeFrag : Fragment() {
             }
             mainMovieLayout.show()
             loadingBar.hide()
+        })
+    }
+
+    private fun updateNowPlayingSlider() {
+        nowPlayingSlider.adapter = nowPlaying
+        viewModel.nowPlaying.observe(requireActivity(), {
+            if (it.results.isNotEmpty()) {
+                nowPlayingSlider.show()
+                nowPlaying.renderData(it.results)
+            } else {
+                nowPlayingSlider.hide()
+            }
         })
     }
 }

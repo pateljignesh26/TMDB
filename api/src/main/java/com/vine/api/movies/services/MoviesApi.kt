@@ -1,8 +1,10 @@
 package com.vine.api.movies.services
 
 import com.vine.api.movies.models.response.MovieResponse
+import com.vine.api.movies.models.video.NowPlayingVideos
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MoviesApi {
@@ -23,10 +25,16 @@ interface MoviesApi {
         @Query("api_key") api: String
     ): Response<MovieResponse>
 
- @GET("now_playing")
+    @GET("now_playing")
     suspend fun nowPlaying(
         @Query("api_key") api: String
     ): Response<MovieResponse>
+
+    @GET("{movie_id}/videos")
+    suspend fun nowPlayingVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") api: String
+    ): Response<NowPlayingVideos>
 
 
 }
