@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 class NowPlayingSliderAdapter @Inject constructor() : PagerAdapter() {
 
-    private val youtubeApi: String = "AIzaSyCaVNiEuk_dmoIxzElkBHw8IObKAuPaGK4"
     private var movieList: List<Movie> = listOf()
     private lateinit var listener: onClickDashBoardMovies
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vine.api.movies.models.credits.MovieCredits
 import com.vine.api.movies.models.details.MovieDetails
+import com.vine.api.movies.models.video.NowPlayingVideos
 import com.vine.tmdb.data.repo.MoviesRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,7 +18,7 @@ class MovieDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getMovieDetails(movieId: Int): MutableLiveData<MovieDetails> {
-        var data = MutableLiveData<MovieDetails>()
+        val data = MutableLiveData<MovieDetails>()
         viewModelScope.launch {
             repo.getMovieDetails(movieId, apiKey).body().let {
                 data.value = it
@@ -27,9 +28,19 @@ class MovieDetailsViewModel @Inject constructor(
     }
 
     fun getMovieCredits(movieId: Int): MutableLiveData<MovieCredits> {
-        var data = MutableLiveData<MovieCredits>()
+        val data = MutableLiveData<MovieCredits>()
         viewModelScope.launch {
             repo.getMovieCredits(movieId, apiKey).body().let {
+                data.value = it
+            }
+        }
+        return data
+    }
+
+    fun getNowPlayingVideo(moviesId: Int): MutableLiveData<NowPlayingVideos> {
+        val data = MutableLiveData<NowPlayingVideos>()
+        viewModelScope.launch {
+            repo.getNowPlayingVideos(moviesId, apiKey).body()?.let {
                 data.value = it
             }
         }
