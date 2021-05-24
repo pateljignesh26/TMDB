@@ -13,4 +13,7 @@
 
     <color name="active_tab_color">#FFFFFF</color>
     <color name="inactive_tab_color">#8D8787</color>
+    <color name="blue">#0F5FE7</color>
+    <color name="red">#E70F28</color>
+    <color name="yellow">#E7C30F</color>
 </resources>

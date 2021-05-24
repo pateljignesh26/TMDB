@@ -1,5 +1,7 @@
 package com.vine.api.movies.services
 
+import com.vine.api.movies.models.credits.MovieCredits
+import com.vine.api.movies.models.details.MovieDetails
 import com.vine.api.movies.models.response.MovieResponse
 import com.vine.api.movies.models.video.NowPlayingVideos
 import retrofit2.Response
@@ -35,6 +37,18 @@ interface MoviesApi {
         @Path("movie_id") movieId: Int,
         @Query("api_key") api: String
     ): Response<NowPlayingVideos>
+
+    @GET("{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") api: String
+    ): Response<MovieDetails>
+
+    @GET("{movie_id}/credits")
+    suspend fun getMovieCredits(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") api: String
+    ): Response<MovieCredits>
 
 
 }

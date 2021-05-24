@@ -5,25 +5,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.vine.api.movies.models.credits.Cast
+import com.vine.api.movies.models.credits.Crew
 import com.vine.api.movies.models.entitys.Movie
 import com.vine.tmdb.R
-import com.vine.tmdb.data.listener.onClickDashBoardMovies
+import kotlinx.android.synthetic.main.rcv_cast.view.*
 import kotlinx.android.synthetic.main.rcv_home.view.*
 import javax.inject.Inject
 
 
-class HomeMoviesAdapter @Inject constructor() :
-    RecyclerView.Adapter<HomeMoviesAdapter.MoviesHolder>() {
+class CrewsRcvAdapter @Inject constructor() :
+    RecyclerView.Adapter<CrewsRcvAdapter.MoviesHolder>() {
 
-    private var movieList: List<Movie> = listOf()
-    private lateinit var listener: onClickDashBoardMovies
+    private var crewList: List<Crew> = listOf()
 
     class MoviesHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesHolder {
         return MoviesHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.rcv_home,
+                R.layout.rcv_cast,
                 parent,
                 false
             )
@@ -31,26 +33,21 @@ class HomeMoviesAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: MoviesHolder, position: Int) {
-        holder.itemView.tvMovieName.text = movieList[position].originalTitle
-        Glide.with(holder.itemView.context)
-            .load("https://image.tmdb.org/t/p/w500/${movieList[position].posterPath}")
-            .into(holder.itemView.ivMovie)
+        holder.itemView.tvActorRealName.text = crewList[position].originalName
+        holder.itemView.tvActorName.text = crewList[position].job
 
-        holder.itemView.setOnClickListener {
-            listener.onClickMovie(movieList[position])
-        }
+        Glide.with(holder.itemView.context)
+            .load("https://image.tmdb.org/t/p/w500/${crewList[position].profilePath}")
+            .apply(RequestOptions.circleCropTransform())
+            .into(holder.itemView.ivActorImage)
     }
 
     override fun getItemCount(): Int {
-        return movieList.size
+        return crewList.size
     }
 
-    fun renderData(list: List<Movie>) {
-        movieList = list
+    fun renderData(list: List<Crew>) {
+        crewList = list
         notifyDataSetChanged()
-    }
-
-    fun setOnClickListener(listener: onClickDashBoardMovies) {
-        this.listener = listener
     }
 }

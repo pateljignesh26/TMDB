@@ -63,4 +63,26 @@ class MovieTest {
         }
     }
 
+    @Test
+    fun testDetails() {
+        runBlocking {
+            val response = movieClient.moviesApi.getMovieDetails(
+                460465,
+                "384378d344ee92994e7c7a5a6d52666d"
+            )
+            assertNotNull(response)
+        }
+    }
+
+    @Test
+    fun testCredits() {
+        runBlocking {
+            val response = movieClient.moviesApi.getMovieCredits(
+                460465,
+                "384378d344ee92994e7c7a5a6d52666d"
+            ).body()
+            assertNotNull(response)
+        }
+    }
+
 }

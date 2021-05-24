@@ -2,8 +2,9 @@ package com.vine.api.movies.models.entitys
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class Movie(
+data class Movie (
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
@@ -32,4 +33,4 @@ data class Movie(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-)
+): Serializable
