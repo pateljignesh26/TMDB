@@ -1,7 +1,9 @@
-package com.vine.tmdb.data.repo
+package com.vine.tmdb.data
 
 import com.vine.api.MoviesClient
+import com.vine.api.TVClient
 import com.vine.api.movies.services.MoviesApi
+import com.vine.api.tv.services.TvApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,8 +32,18 @@ class AppModule {
     @Singleton
     fun provideClient(): MoviesClient = MoviesClient()
 
+
     @Provides
     @Singleton
     fun provideMoviesApi(clint: MoviesClient): MoviesApi = clint.moviesApi
+
+
+    @Provides
+    @Singleton
+    fun provideTvClient(): TVClient = TVClient()
+
+    @Provides
+    @Singleton
+    fun provideTvApi(clint: TVClient): TvApi = clint.tvApi
 
 }
